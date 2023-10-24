@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: spring-ms-skeleton
+  profiles:
+    active: prod
+
+server:
+  port: 8081
