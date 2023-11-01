@@ -2,6 +2,8 @@
 spring:
   application:
     name: demo
+  main:
+    web-application-type: reactive
 
 # Server Configuration
 server:
@@ -9,6 +11,8 @@ server:
 
 # Logging Configuration
 logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
   level:
     org.springframework.security: INFO
     es.in2.dome.blockchain.connector: DEBUG
@@ -19,13 +23,14 @@ management:
     enabled-by-default: false
     web:
       exposure:
-        include: health, info, loggers, metrics
+        include: health, info, loggers, metrics, prometheus
       base-path: /
       path-mapping:
         health: health
         info: info
         loggers: loggers
         metrics: metrics
+        prometheus: prometheus
   endpoint:
     health:
       enabled: true
@@ -33,6 +38,8 @@ management:
     loggers:
       enabled: true
     metrics:
+      enabled: true
+    prometheus:
       enabled: true
 
 # Documentation Configuration
