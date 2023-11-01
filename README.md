@@ -14,6 +14,8 @@ This is a skeleton for a Spring Boot microservice. It is intended to be used as 
 - Health check endpoint
 - Logback logging
 - Dockerized (multi-stage build)
+- Checkstyle
+- OWASP Dependency Check
 
 ## Dependencies
 

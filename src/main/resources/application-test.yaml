@@ -1,8 +1,0 @@
-spring:
-  application:
-    name: spring-ms-skeleton
-  profiles:
-    active: test
-
-server:
-  port: 8081

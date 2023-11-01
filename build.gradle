@@ -4,13 +4,31 @@ plugins {
 	id 'io.spring.dependency-management' version '1.1.3'
 	id 'jacoco'
 	id 'org.sonarqube' version '4.0.0.2929'
+	id 'checkstyle'
+	id 'org.owasp.dependencycheck' version '8.4.0'
 }
 
-group = 'es.in2'
+group = 'io.fikua'
 version = '0.0.1-SNAPSHOT'
 
 java {
 	sourceCompatibility = '17'
+}
+
+jacoco {
+	toolVersion = "0.8.9"
+}
+
+checkstyle {
+	configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
+}
+
+checkstyleMain {
+	source ='src/main/java'
+}
+
+checkstyleTest {
+	source ='src/test/java'
 }
 
 configurations {
@@ -28,6 +46,9 @@ dependencies {
 	// Spring
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+	// Validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
 	// Lombok
 	compileOnly 'org.projectlombok:lombok'
@@ -69,7 +90,7 @@ tasks.jacocoTestReport {
 	afterEvaluate {
 		classDirectories.setFrom(files(classDirectories.files.collect {
 			fileTree(dir: it, exclude: [
-				'**/SkeletonApplication.class',
+				'**/DemoApplication.class',
 			])
 		}))
 	}
